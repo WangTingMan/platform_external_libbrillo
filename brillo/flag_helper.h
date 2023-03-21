@@ -67,7 +67,7 @@ namespace brillo {
 // The corresponding class representation of a command line flag, used
 // to keep track of pointers to the FLAGS_xxxx variables so that they
 // can be updated.
-class Flag {
+class BRILLO_EXPORT Flag {
  public:
   Flag(const char* name,
        const char* default_value,

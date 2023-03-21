@@ -17,7 +17,18 @@
 #include <base/strings/string_util.h>
 #include <base/strings/stringprintf.h>
 #include <brillo/brillo_export.h>
-#include <gtest/gtest_prod.h>
+
+#ifndef uid_t
+#define uid_t uint32_t
+#endif
+
+#ifndef gid_t
+#define gid_t uint32_t
+#endif
+
+#ifndef pid_t
+#define pid_t uint32_t
+#endif
 
 namespace brillo {
 // Manages a process.  Can create the process, attach to an existing

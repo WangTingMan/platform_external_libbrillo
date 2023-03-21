@@ -46,7 +46,9 @@ const struct ErrorMapEntry {
   ERROR_ENTRY(ENOMEM),           // Out of memory
   ERROR_ENTRY(EACCES),           // Permission denied
   ERROR_ENTRY(EFAULT),           // Bad address
+#ifndef _MSC_VER
   ERROR_ENTRY(ENOTBLK),          // Block device required
+#endif
   ERROR_ENTRY(EBUSY),            // Device or resource busy
   ERROR_ENTRY(EEXIST),           // File exists
   ERROR_ENTRY(EXDEV),            // Cross-device link
@@ -99,15 +101,21 @@ const struct ErrorMapEntry {
   ERROR_ENTRY(ENONET),           // Machine is not on the network
   ERROR_ENTRY(ENOPKG),           // Package not installed
 #endif  // __linux__
+
+#ifndef _MSC_VER
   ERROR_ENTRY(EREMOTE),          // Object is remote
+#endif
   ERROR_ENTRY(ENOLINK),          // Link has been severed
+
 #ifdef __linux__
   ERROR_ENTRY(EADV),             // Advertise error
   ERROR_ENTRY(ESRMNT),           // Srmount error
   ERROR_ENTRY(ECOMM),            // Communication error on send
 #endif  // __linux__
   ERROR_ENTRY(EPROTO),           // Protocol error
+#ifndef _MSC_VER
   ERROR_ENTRY(EMULTIHOP),        // Multihop attempted
+#endif
 #ifdef __linux__
   ERROR_ENTRY(EDOTDOT),          // RFS specific error
 #endif  // __linux__
@@ -128,16 +136,22 @@ const struct ErrorMapEntry {
   ERROR_ENTRY(ERESTART),         // Interrupted system call should be restarted
   ERROR_ENTRY(ESTRPIPE),         // Streams pipe error
 #endif  // __linux__
+#ifndef _MSC_VER
   ERROR_ENTRY(EUSERS),           // Too many users
+#endif
   ERROR_ENTRY(ENOTSOCK),         // Socket operation on non-socket
   ERROR_ENTRY(EDESTADDRREQ),     // Destination address required
   ERROR_ENTRY(EMSGSIZE),         // Message too long
   ERROR_ENTRY(EPROTOTYPE),       // Protocol wrong type for socket
   ERROR_ENTRY(ENOPROTOOPT),      // Protocol not available
   ERROR_ENTRY(EPROTONOSUPPORT),  // Protocol not supported
+#ifndef _MSC_VER
   ERROR_ENTRY(ESOCKTNOSUPPORT),  // Socket type not supported
+#endif
   ERROR_ENTRY(EOPNOTSUPP),       // Operation not supported o/transport endpoint
+#ifndef _MSC_VER
   ERROR_ENTRY(EPFNOSUPPORT),     // Protocol family not supported
+#endif
   ERROR_ENTRY(EAFNOSUPPORT),     // Address family not supported by protocol
   ERROR_ENTRY(EADDRINUSE),       // Address already in use
   ERROR_ENTRY(EADDRNOTAVAIL),    // Cannot assign requested address
@@ -149,15 +163,23 @@ const struct ErrorMapEntry {
   ERROR_ENTRY(ENOBUFS),          // No buffer space available
   ERROR_ENTRY(EISCONN),          // Transport endpoint is already connected
   ERROR_ENTRY(ENOTCONN),         // Transport endpoint is not connected
+#ifndef _MSC_VER
   ERROR_ENTRY(ESHUTDOWN),        // Cannot send after transp. endpoint shutdown
+#endif
+#ifndef _MSC_VER
   ERROR_ENTRY(ETOOMANYREFS),     // Too many references: cannot splice
+#endif
   ERROR_ENTRY(ETIMEDOUT),        // Connection timed out
   ERROR_ENTRY(ECONNREFUSED),     // Connection refused
+#ifndef _MSC_VER
   ERROR_ENTRY(EHOSTDOWN),        // Host is down
+#endif
   ERROR_ENTRY(EHOSTUNREACH),     // No route to host
   ERROR_ENTRY(EALREADY),         // Operation already in progress
   ERROR_ENTRY(EINPROGRESS),      // Operation now in progress
+#ifndef _MSC_VER
   ERROR_ENTRY(ESTALE),           // Stale file handle
+#endif
 #ifdef __linux__
   ERROR_ENTRY(EUCLEAN),          // Structure needs cleaning
   ERROR_ENTRY(ENOTNAM),          // Not a XENIX named type file
@@ -165,7 +187,9 @@ const struct ErrorMapEntry {
   ERROR_ENTRY(EISNAM),           // Is a named type file
   ERROR_ENTRY(EREMOTEIO),        // Remote I/O error
 #endif  // __linux__
+#ifndef _MSC_VER
   ERROR_ENTRY(EDQUOT),           // Quota exceeded
+#endif
 #ifdef __linux__
   ERROR_ENTRY(ENOMEDIUM),        // No medium found
   ERROR_ENTRY(EMEDIUMTYPE),      // Wrong medium type
@@ -208,7 +232,10 @@ std::string ErrorCodeFromSystemError(int errnum) {
 void AddSystemError(ErrorPtr* error,
                     const base::Location& location,
                     int errnum) {
-  std::string message = base::safe_strerror(errnum);
+  std::string message;
+#ifndef _MSC_VER
+  message = base::safe_strerror(errnum);
+#endif
   std::string code = ErrorCodeFromSystemError(errnum);
   if (message.empty())
     message = "Unknown error " + std::to_string(errnum);

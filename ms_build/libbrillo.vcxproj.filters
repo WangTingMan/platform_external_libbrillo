@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="brillo">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="brillo\errors">
+      <UniqueIdentifier>{7f7bcd60-fcef-4471-9fcf-bba56738fae3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="brillo\message_loops">
+      <UniqueIdentifier>{aff82f95-3d63-468b-9459-eb2ae5fdaecb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\brillo\backoff_entry.cc">
+      <Filter>brillo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\data_encoding.cc">
+      <Filter>brillo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\errors\error.cc">
+      <Filter>brillo\errors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\errors\error_codes.cc">
+      <Filter>brillo\errors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\flag_helper.cc">
+      <Filter>brillo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\key_value_store.cc">
+      <Filter>brillo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\message_loops\message_loop.cc">
+      <Filter>brillo\message_loops</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\message_loops\message_loop_utils.cc">
+      <Filter>brillo\message_loops</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\mime_utils.cc">
+      <Filter>brillo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\osrelease_reader.cc">
+      <Filter>brillo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\process_information.cc">
+      <Filter>brillo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\secure_blob.cc">
+      <Filter>brillo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\strings\string_utils.cc">
+      <Filter>brillo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\url_utils.cc">
+      <Filter>brillo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\brillo\value_conversion.cc">
+      <Filter>brillo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\brillo\backoff_entry.h">
+      <Filter>brillo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\data_encoding.h">
+      <Filter>brillo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\errors\error.h">
+      <Filter>brillo\errors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\errors\error_codes.h">
+      <Filter>brillo\errors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\flag_helper.h">
+      <Filter>brillo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\key_value_store.h">
+      <Filter>brillo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\message_loops\message_loop.h">
+      <Filter>brillo\message_loops</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\message_loops\message_loop_utils.h">
+      <Filter>brillo\message_loops</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\mime_utils.h">
+      <Filter>brillo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\osrelease_reader.h">
+      <Filter>brillo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\process_information.h">
+      <Filter>brillo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\secure_blob.h">
+      <Filter>brillo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\strings\string_utils.h">
+      <Filter>brillo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\url_utils.h">
+      <Filter>brillo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\brillo\value_conversion.h">
+      <Filter>brillo</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

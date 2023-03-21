@@ -6,7 +6,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#ifndef _MSC_VER
 #include <sysexits.h>
+#endif
 
 #include <memory>
 #include <string>
@@ -17,6 +19,7 @@
 #include <base/logging.h>
 #include <base/strings/stringprintf.h>
 #include <base/strings/string_number_conversions.h>
+#include <base/strings/sys_string_conversions.h>
 
 namespace brillo {
 
@@ -206,6 +209,12 @@ void FlagHelper::Init(int argc,
   GetInstance()->UpdateFlagValues();
 }
 
+#ifdef _MSC_VER
+#define EX_OK 0
+#define EX_USAGE 64
+#define EX_DATAERR 65
+#endif
+
 void FlagHelper::UpdateFlagValues() {
   std::string error_msg;
   int error_code = EX_OK;
@@ -230,7 +239,11 @@ void FlagHelper::UpdateFlagValues() {
     if (key == switches::kV || key == switches::kVModule)
       continue;
 
+#ifdef _MSC_VER
+    std::string value = base::SysWideToNativeMB(pair.second);
+#else
     const std::string& value = pair.second;
+#endif
 
     auto df_it = defined_flags_.find(key);
     if (df_it != defined_flags_.end()) {

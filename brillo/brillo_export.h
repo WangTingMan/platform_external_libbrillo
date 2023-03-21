@@ -5,6 +5,24 @@
 #ifndef LIBBRILLO_BRILLO_BRILLO_EXPORT_H_
 #define LIBBRILLO_BRILLO_BRILLO_EXPORT_H_
 
+#if defined(WIN32) || defined(_MSC_VER)
+
+#if defined(LIBBRILLO_EXPORTS)
+#define BRILLO_EXPORT __declspec(dllexport)
+#define BRILLO_PRIVATE
+#else
+#define BRILLO_EXPORT __declspec(dllimport)
+#define BRILLO_PRIVATE
+#endif  // defined(LIBBRILLO_EXPORTS)
+
+#else  // defined(WIN32)
+#if defined(LIBBRILLO_EXPORTS)
+#define BRILLO_EXPORT __attribute__((visibility("default")))
+#else
+#define BRILLO_EXPORT
+#endif  // defined(LIBBRILLO_EXPORTS)
+#endif
+
 // Use BRILLO_EXPORT attribute to decorate your classes, methods and variables
 // that need to be exported out of libbrillo. By default, any symbol not
 // explicitly marked with BRILLO_EXPORT attribute is not exported.
@@ -32,7 +50,9 @@ class BRILLO_EXPORT Bar {
 // be exported and fail to link. Marking those inline explicitly might help.
 // Alternatively, exporting specific instantiation of the template could be
 // used with "extern template" and combining this with BRILLO_EXPORT.
+#ifndef BRILLO_EXPORT
 #define BRILLO_EXPORT __attribute__((__visibility__("default")))
+#endif
 
 // On occasion you might need to disable exporting a particular symbol if
 // you don't want the clients to see it. For example, you can explicitly
@@ -55,6 +75,8 @@ class BRILLO_EXPORT Foo {
 // if that private method is not exported.
 // So be careful with hiding members if you don't want to deal with obscure
 // linker errors.
+#ifndef BRILLO_PRIVATE
 #define BRILLO_PRIVATE __attribute__((__visibility__("hidden")))
+#endif
 
 #endif  // LIBBRILLO_BRILLO_BRILLO_EXPORT_H_
