@@ -25,6 +25,7 @@
     <ClCompile Include="..\brillo\errors\error_codes.cc" />
     <ClCompile Include="..\brillo\flag_helper.cc" />
     <ClCompile Include="..\brillo\key_value_store.cc" />
+    <ClCompile Include="..\brillo\message_loops\base_message_loop.cc" />
     <ClCompile Include="..\brillo\message_loops\message_loop.cc" />
     <ClCompile Include="..\brillo\message_loops\message_loop_utils.cc" />
     <ClCompile Include="..\brillo\mime_utils.cc" />
@@ -42,6 +43,7 @@
     <ClInclude Include="..\brillo\errors\error_codes.h" />
     <ClInclude Include="..\brillo\flag_helper.h" />
     <ClInclude Include="..\brillo\key_value_store.h" />
+    <ClInclude Include="..\brillo\message_loops\base_message_loop.h" />
     <ClInclude Include="..\brillo\message_loops\message_loop.h" />
     <ClInclude Include="..\brillo\message_loops\message_loop_utils.h" />
     <ClInclude Include="..\brillo\mime_utils.h" />

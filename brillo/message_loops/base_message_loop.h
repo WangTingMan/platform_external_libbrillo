@@ -16,13 +16,14 @@
 #include <memory>
 #include <string>
 
-#include <base/files/file_descriptor_watcher_posix.h>
 #include <base/location.h>
 #include <base/memory/weak_ptr.h>
 #include <base/message_loop/message_loop.h>
 #include <base/message_loop/message_pump_for_io.h>
 #include <base/time/time.h>
+#if __has_include(<gtest/gtest_prod.h>)
 #include <gtest/gtest_prod.h>
+#endif
 
 #include <brillo/brillo_export.h>
 #include <brillo/message_loops/message_loop.h>
@@ -103,7 +104,9 @@ class BRILLO_EXPORT BaseMessageLoop : public MessageLoop {
   base::MessageLoopForIO* base_loop_;
 
   // FileDescriptorWatcher for |base_loop_|. This is used in AlarmTimer.
+#ifndef _MSC_VER
   std::unique_ptr<base::FileDescriptorWatcher> watcher_;
+#endif
 
   // The RunLoop instance used to run the main loop from Run().
   base::RunLoop* base_run_loop_{nullptr};

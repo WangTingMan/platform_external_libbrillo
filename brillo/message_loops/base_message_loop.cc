@@ -6,18 +6,12 @@
 
 #include <fcntl.h>
 #include <sys/stat.h>
-#include <sys/sysmacros.h>
-#include <sys/types.h>
-#include <unistd.h>
-
-#ifndef __APPLE__
+#if __has_include(<sys/sysmacros.h>)
 #include <sys/sysmacros.h>
 #endif
-
-#ifndef __ANDROID_HOST__
-// Used for MISC_MAJOR. Only required for the target and not always available
-// for the host.
-#include <linux/major.h>
+#include <sys/types.h>
+#if __has_include(<unistd.h>)
+#include <unistd.h>
 #endif
 
 #include <utility>
@@ -53,12 +47,17 @@ BaseMessageLoop::BaseMessageLoop() {
          "base::MessageLoop is already created for this thread.";
   owned_base_loop_.reset(new base::MessageLoopForIO());
   base_loop_ = owned_base_loop_.get();
+#ifndef _MSC_VER
   watcher_ = std::make_unique<base::FileDescriptorWatcher>(base_loop_);
+#endif
 }
 
 BaseMessageLoop::BaseMessageLoop(base::MessageLoopForIO* base_loop)
-    : base_loop_(base_loop),
-      watcher_(std::make_unique<base::FileDescriptorWatcher>(base_loop_)) {}
+    : base_loop_(base_loop)
+#ifndef _MSC_VER
+    , watcher_(std::make_unique<base::FileDescriptorWatcher>(base_loop_))
+#endif
+{}
 
 BaseMessageLoop::~BaseMessageLoop() {
   // Note all pending canceled delayed tasks when destroying the message loop.
